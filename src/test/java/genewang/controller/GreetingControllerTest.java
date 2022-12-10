@@ -85,7 +85,7 @@ public class GreetingControllerTest {
     @Test
     public void testGetGreeting() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v1/8/8")
+                .get("/api/v4/8/8")
                 .headers(httpHeaders);
 
         mockMvc.perform(requestBuilder)
