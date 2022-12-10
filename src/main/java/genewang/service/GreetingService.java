@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GreetingService {
@@ -16,7 +15,7 @@ public class GreetingService {
         this.userRepository = userRepository;
     }
 
-    public List<Message> getGreeting(String month, String day) {
+    public List<Message> getGreetingByGender(String month, String day) {
         String birthday = month + "/" + day;
 
 
@@ -27,9 +26,23 @@ public class GreetingService {
 
         List<Message> messages = new ArrayList<>();
         for (AppUser appUser : userList) {
-            Message message = new Message(
-                    "Subject: Happy birthday!",
-                    "Happy birthday, dear " + appUser.getFirstName() + "!");
+            Message message = new Message();
+            message.setTitle("Subject: Happy birthday!");
+            if (appUser.getGender().equals("Male")) {
+                message.setContent(
+                        "Happy birthday, dear " +
+                        appUser.getFirstName() + "! " +
+                        "We offer special discount 20% off for the following items: " +
+                        "White Wine, iPhone X"
+                );
+            } else {
+                message.setContent(
+                        "Happy birthday, dear " +
+                        appUser.getFirstName() + "! " +
+                        "We offer special discount 50% off for the following items: " +
+                        "Cosmetic, LV Handbags"
+                );
+            }
             messages.add(message);
         }
 

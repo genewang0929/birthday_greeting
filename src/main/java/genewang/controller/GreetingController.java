@@ -1,6 +1,5 @@
 package genewang.controller;
 
-import genewang.entity.AppUser;
 import genewang.entity.Message;
 import genewang.service.GreetingService;
 import org.springframework.http.MediaType;
@@ -24,7 +23,7 @@ public class GreetingController {
     public ResponseEntity<Object> getGreeting(@PathVariable("month") String month,
                                               @PathVariable("day") String day) {
         Map<String, Object> map = new HashMap<>();
-        List<Message> messageList = greetingService.getGreeting(month, day);
+        List<Message> messageList = greetingService.getGreetingByGender(month, day);
         map.put("message", messageList);
         return ResponseEntity.ok(map);
     }
