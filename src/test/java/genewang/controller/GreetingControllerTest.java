@@ -92,15 +92,9 @@ public class GreetingControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message.[0].title").value("Subject: Happy birthday!"))
-                .andExpect(jsonPath("$.message.[0].content").value(
-                        "Happy birthday, dear Robert! " +
-                        "We offer special discount 20% off for the following items: " +
-                        "White Wine, iPhone X"))
+                .andExpect(jsonPath("$.message.[0].content").value("Happy birthday, dear Yen, Robert!"))
                 .andExpect(jsonPath("$.message.[1].title").value("Subject: Happy birthday!"))
-                .andExpect(jsonPath("$.message.[1].content").value(
-                        "Happy birthday, dear Sherry! " +
-                        "We offer special discount 50% off for the following items: " +
-                        "Cosmetic, LV Handbags"))
+                .andExpect(jsonPath("$.message.[1].content").value("Happy birthday, dear Chen, Sherry!"))
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
     }
 

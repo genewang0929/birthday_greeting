@@ -23,7 +23,7 @@ public class GreetingController {
     public ResponseEntity<Object> getGreeting(@PathVariable("month") String month,
                                               @PathVariable("day") String day) {
         Map<String, Object> map = new HashMap<>();
-        List<Message> messageList = greetingService.getGreetingByGender(month, day);
+        List<Message> messageList = greetingService.getGreeting(month, day);
         map.put("message", messageList);
         return ResponseEntity.ok(map);
     }
