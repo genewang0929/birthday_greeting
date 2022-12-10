@@ -85,7 +85,7 @@ public class GreetingControllerTest {
     @Test
     public void testGetGreeting() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v1/8/8")
+                .get("/api/v1/2022/12/22")
                 .headers(httpHeaders);
 
         mockMvc.perform(requestBuilder)
@@ -93,14 +93,8 @@ public class GreetingControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message.[0].title").value("Subject: Happy birthday!"))
                 .andExpect(jsonPath("$.message.[0].content").value(
-                        "Happy birthday, dear Robert! " +
-                        "We offer special discount 20% off for the following items: " +
-                        "White Wine, iPhone X"))
-                .andExpect(jsonPath("$.message.[1].title").value("Subject: Happy birthday!"))
-                .andExpect(jsonPath("$.message.[1].content").value(
-                        "Happy birthday, dear Sherry! " +
-                        "We offer special discount 50% off for the following items: " +
-                        "Cosmetic, LV Handbags"))
+                        "Happy birthday, dear `Peter`! " +
+                        "https://hr.jhu.edu/wp-content/uploads/elder-care-GettyImages-912073272.jpg"))
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
     }
 

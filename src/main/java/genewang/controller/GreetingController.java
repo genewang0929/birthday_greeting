@@ -19,11 +19,12 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
-    @GetMapping("/{month}/{day}")
-    public ResponseEntity<Object> getGreeting(@PathVariable("month") String month,
+    @GetMapping("/{year}/{month}/{day}")
+    public ResponseEntity<Object> getGreeting(@PathVariable("year") String year,
+                                              @PathVariable("month") String month,
                                               @PathVariable("day") String day) {
         Map<String, Object> map = new HashMap<>();
-        List<Message> messageList = greetingService.getGreetingByGender(month, day);
+        List<Message> messageList = greetingService.getGreetingByAge(year, month, day);
         map.put("message", messageList);
         return ResponseEntity.ok(map);
     }

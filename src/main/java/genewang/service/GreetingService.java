@@ -15,34 +15,24 @@ public class GreetingService {
         this.userRepository = userRepository;
     }
 
-    public List<Message> getGreetingByGender(String month, String day) {
+    public List<Message> getGreetingByAge(String year, String month, String day) {
         String birthday = month + "/" + day;
+
+        int birthYear = Integer.parseInt(year) - 49;
 
 
         List<AppUser> userList = userRepository.findAll()
                 .stream()
                 .filter(appUser -> appUser.getDateOfBirth().substring(5, appUser.getDateOfBirth().length()).equals(birthday))
+                .filter(appUser -> Integer.parseInt(appUser.getDateOfBirth().substring(0, 4)) < birthYear)
                 .toList();
 
         List<Message> messages = new ArrayList<>();
         for (AppUser appUser : userList) {
-            Message message = new Message();
-            message.setTitle("Subject: Happy birthday!");
-            if (appUser.getGender().equals("Male")) {
-                message.setContent(
-                        "Happy birthday, dear " +
-                        appUser.getFirstName() + "! " +
-                        "We offer special discount 20% off for the following items: " +
-                        "White Wine, iPhone X"
-                );
-            } else {
-                message.setContent(
-                        "Happy birthday, dear " +
-                        appUser.getFirstName() + "! " +
-                        "We offer special discount 50% off for the following items: " +
-                        "Cosmetic, LV Handbags"
-                );
-            }
+            Message message = new Message(
+                    "Subject: Happy birthday!",
+                    "Happy birthday, dear `" + appUser.getFirstName() + "`!" + " https://hr.jhu.edu/wp-content/uploads/elder-care-GettyImages-912073272.jpg"
+            );
             messages.add(message);
         }
 
