@@ -85,17 +85,17 @@ public class GreetingControllerTest {
     @Test
     public void testGetGreeting() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v4/8/8")
+                .get("/api/v6/8/8")
                 .headers(httpHeaders);
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message.[0].title").value("Subject: Happy birthday!"))
-                .andExpect(jsonPath("$.message.[0].content").value("Happy birthday, dear Yen, Robert!"))
-                .andExpect(jsonPath("$.message.[1].title").value("Subject: Happy birthday!"))
-                .andExpect(jsonPath("$.message.[1].content").value("Happy birthday, dear Chen, Sherry!"))
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
+                .andExpect(xpath("HashMap/message/title").string("Subject: Happy birthday!"))
+                .andExpect(xpath("HashMap/message/content").string("Happy birthday, dear Robert!"))
+//                .andExpect(xpath("HashMap/message/title").string("Subject: Happy birthday!"))
+//                .andExpect(xpath("HashMap/message/content").string("Happy birthday, dear Sherry!"))
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML_VALUE));
     }
 
     @AfterEach

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/api/v4", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v6", produces = MediaType.APPLICATION_XML_VALUE)
 public class GreetingController {
     public GreetingService greetingService;
 

@@ -28,7 +28,7 @@ public class GreetingService {
         for (AppUser appUser : userList) {
             Message message = new Message(
                     "Subject: Happy birthday!",
-                    "Happy birthday, dear " + appUser.getLastName() + ", " + appUser.getFirstName() + "!"
+                    "Happy birthday, dear " + appUser.getFirstName() + "!"
             );
             messages.add(message);
         }
