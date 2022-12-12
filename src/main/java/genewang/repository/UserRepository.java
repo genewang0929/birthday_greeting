@@ -1,8 +1,8 @@
 package genewang.repository;
 
 import genewang.entity.AppUser;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends MongoRepository<AppUser, String> {
+public interface UserRepository extends JpaRepository<AppUser, Long> {
 
 }

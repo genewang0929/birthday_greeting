@@ -43,7 +43,7 @@ public class GreetingControllerTest {
                 "1985/8/8",
                 "robert.yen@linecorp.com"
         );
-        userRepository.insert(appUser1);
+        userRepository.save(appUser1);
 
         AppUser appUser2 = new AppUser(
                 "Cid",
@@ -52,7 +52,7 @@ public class GreetingControllerTest {
                 "1990/10/10",
                 "cid.change@linecorp.com"
         );
-        userRepository.insert(appUser2);
+        userRepository.save(appUser2);
 
         AppUser appUser3 = new AppUser(
                 "Miki",
@@ -61,7 +61,7 @@ public class GreetingControllerTest {
                 "1993/4/5",
                 "miki.lai@linecorp.com"
         );
-        userRepository.insert(appUser3);
+        userRepository.save(appUser3);
 
         AppUser appUser4 = new AppUser(
                 "Sherry",
@@ -70,7 +70,7 @@ public class GreetingControllerTest {
                 "1993/8/8",
                 "sherry.lai@linecorp.com"
         );
-        userRepository.insert(appUser4);
+        userRepository.save(appUser4);
 
         AppUser appUser5 = new AppUser(
                 "Peter",
@@ -79,23 +79,23 @@ public class GreetingControllerTest {
                 "1950/12/22",
                 "peter.wang@linecorp.com"
         );
-        userRepository.insert(appUser5);
+        userRepository.save(appUser5);
     }
 
     @Test
     public void testGetGreeting() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v6/8/8")
+                .get("/api/v5/8/8")
                 .headers(httpHeaders);
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(xpath("HashMap/message/title").string("Subject: Happy birthday!"))
-                .andExpect(xpath("HashMap/message/content").string("Happy birthday, dear Robert!"))
-//                .andExpect(xpath("HashMap/message/title").string("Subject: Happy birthday!"))
-//                .andExpect(xpath("HashMap/message/content").string("Happy birthday, dear Sherry!"))
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML_VALUE));
+                .andExpect(jsonPath("$.message.[0].title").value("Subject: Happy birthday!"))
+                .andExpect(jsonPath("$.message.[0].content").value("Happy birthday, dear Robert!"))
+                .andExpect(jsonPath("$.message.[1].title").value("Subject: Happy birthday!"))
+                .andExpect(jsonPath("$.message.[1].content").value("Happy birthday, dear Sherry!"))
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
     }
 
     @AfterEach

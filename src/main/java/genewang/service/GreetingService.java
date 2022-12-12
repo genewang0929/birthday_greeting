@@ -3,7 +3,9 @@ package genewang.service;
 import genewang.entity.AppUser;
 import genewang.entity.Message;
 import genewang.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
